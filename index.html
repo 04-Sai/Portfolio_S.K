@@ -8,8 +8,6 @@
   <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Three.js for Particle Canvas -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -18,18 +16,18 @@
         extend: {
           colors: {
             brand: {
-              50: '#f0fdfa',
-              100: '#ccfbf1',
-              400: '#2dd4bf',
-              500: '#14b8a6',
-              600: '#0d9488',
-              900: '#134e4a',
+              50: '#eep2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              900: '#312e81',
             },
             cyber: {
-              bg: '#090d16',
+              bg: '#0b0f19',
               card: 'rgba(15, 23, 42, 0.75)',
-              border: 'rgba(45, 212, 191, 0.2)',
-              accent: '#38bdf8'
+              border: 'rgba(129, 140, 248, 0.2)',
+              accent: '#c084fc'
             }
           },
           animation: {
@@ -57,50 +55,9 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #060911;
+      background-color: #0b0f19;
       color: #f1f5f9;
       overflow-x: hidden;
-      cursor: none;
-    }
-
-    #cursor-dot {
-      width: 8px;
-      height: 8px;
-      background-color: #2dd4bf;
-      position: fixed;
-      top: 0;
-      left: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s ease-out;
-      box-shadow: 0 0 10px #2dd4bf, 0 0 20px #2dd4bf;
-    }
-
-    #cursor-ring {
-      width: 36px;
-      height: 36px;
-      border: 1.5px solid rgba(45, 212, 191, 0.6);
-      position: fixed;
-      top: 0;
-      left: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-      transform: translate(-50%, -50%);
-    }
-
-    body.cursor-hover #cursor-ring {
-      width: 56px;
-      height: 56px;
-      border-color: #38bdf8;
-      background-color: rgba(56, 189, 248, 0.1);
-    }
-
-    body.cursor-hover #cursor-dot {
-      transform: scale(1.8);
-      background-color: #38bdf8;
     }
 
     h1, h2, h3, .font-heading {
@@ -108,7 +65,7 @@
     }
 
     .glass-card {
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -117,12 +74,12 @@
     }
 
     .glass-card:hover {
-      border-color: rgba(45, 212, 191, 0.4);
-      box-shadow: 0 12px 40px 0 rgba(20, 184, 166, 0.15);
+      border-color: rgba(129, 140, 248, 0.4);
+      box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.15);
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #2dd4bf 0%, #38bdf8 50%, #818cf8 100%);
+      background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #e879f9 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -152,11 +109,7 @@
 </head>
 <body class="relative min-h-screen text-slate-200 antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- Custom Cursor Elements -->
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
-
-  <!-- Background Particle Canvas -->
+  <!-- Background Wave Canvas -->
   <canvas id="bg-canvas"></canvas>
 
   <!-- Ambient Grid -->
@@ -165,7 +118,7 @@
   <!-- Navigation Bar -->
   <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/70 border-b border-slate-800/80 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3 group hover-target">
+      <a href="#" class="flex items-center gap-3 group">
         <img src="img.jpg" alt="Sahil Kurbet" class="w-10 h-10 rounded-xl object-cover border border-brand-500/40 shadow-md group-hover:scale-105 transition-transform">
         <div>
           <span class="font-heading font-bold text-lg tracking-wider text-slate-100 block group-hover:text-brand-400 transition-colors">SAHIL KURBET</span>
@@ -175,17 +128,17 @@
 
       <!-- Desktop Links -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#about" class="hover:text-brand-400 transition-colors hover-target">About</a>
-        <a href="#projects" class="hover:text-brand-400 transition-colors hover-target">Projects</a>
-        <a href="#skills" class="hover:text-brand-400 transition-colors hover-target">Skills</a>
-        <a href="#achievements" class="hover:text-brand-400 transition-colors hover-target">Experience</a>
-        <a href="#contact" class="hover:text-brand-400 transition-colors hover-target">Contact</a>
+        <a href="#about" class="hover:text-brand-400 transition-colors">About</a>
+        <a href="#projects" class="hover:text-brand-400 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-brand-400 transition-colors">Skills</a>
+        <a href="#achievements" class="hover:text-brand-400 transition-colors">Experience</a>
+        <a href="#contact" class="hover:text-brand-400 transition-colors">Contact</a>
       </nav>
 
       <!-- Resume Button -->
       <div class="flex items-center gap-4">
         <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" 
-           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500 hover:text-slate-950 font-medium text-sm transition-all duration-200 hover-target">
+           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500 hover:text-white font-medium text-sm transition-all duration-200">
           <i data-lucide="file-text" class="w-4 h-4"></i>
           <span>Resume</span>
         </a>
@@ -216,17 +169,17 @@
           </p>
 
           <div class="flex flex-wrap items-center gap-4">
-            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-sky-500 text-slate-950 font-semibold text-sm hover:shadow-lg hover:shadow-brand-500/25 hover:scale-105 transition-all flex items-center gap-2 hover-target">
+            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-purple-500 text-white font-semibold text-sm hover:shadow-lg hover:shadow-brand-500/25 hover:scale-105 transition-all flex items-center gap-2">
               <span>View Live Projects</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
             <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center gap-2 hover-target">
+               class="px-6 py-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center gap-2">
               <i data-lucide="github" class="w-4 h-4"></i>
               <span>GitHub Profile</span>
             </a>
             <a href="https://linkedin.com/in/sahil-kurbet-ssk" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-sky-500/50 text-sky-400 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center gap-2 hover-target">
+               class="px-6 py-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-purple-500/50 text-purple-400 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center gap-2">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn</span>
             </a>
@@ -235,8 +188,8 @@
 
         <!-- Right Profile Image Card -->
         <div class="lg:col-span-4 flex justify-center">
-          <div id="profile-tilt-card" class="relative group tilt-card hover-target">
-            <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-sky-500 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+          <div id="profile-tilt-card" class="relative group tilt-card">
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-purple-500 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
             <div class="relative glass-card p-3 rounded-3xl overflow-hidden max-w-[280px] sm:max-w-[320px]">
               <img src="img.jpg" alt="Sahil Sanjay Kurbet" class="w-full h-[320px] sm:h-[360px] object-cover rounded-2xl filter brightness-105 contrast-105 pointer-events-none">
               <div class="mt-4 px-2 pb-2 text-center pointer-events-none">
@@ -250,19 +203,19 @@
 
       <!-- Quick Metrics Bar -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-slate-800/80 max-w-4xl">
-        <div class="glass-card p-4 rounded-xl border border-slate-800 hover-target">
+        <div class="glass-card p-4 rounded-xl border border-slate-800">
           <p class="text-2xl font-bold font-heading text-white">Top 5 Finish</p>
           <p class="text-xs text-slate-400 font-mono mt-1">MakeForBelagavi (83 Teams)</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-slate-800 hover-target">
+        <div class="glass-card p-4 rounded-xl border border-slate-800">
           <p class="text-2xl font-bold font-heading text-white">ESP32 & IoT</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Wireless Drone Charging</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-slate-800 hover-target">
+        <div class="glass-card p-4 rounded-xl border border-slate-800">
           <p class="text-2xl font-bold font-heading text-white">Live Telemetry</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Medical Safety Dashboard</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-slate-800 hover-target">
+        <div class="glass-card p-4 rounded-xl border border-slate-800">
           <p class="text-2xl font-bold font-heading text-white">Internship</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Edge AI EV Charging</p>
         </div>
@@ -298,7 +251,7 @@
           <h2 class="text-3xl md:text-4xl font-bold font-heading text-white">Featured Engineering Projects</h2>
           <p class="text-slate-400 mt-2 text-sm md:text-base">Integrating low-level electronics with interactive digital dashboards</p>
         </div>
-        <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 font-medium text-sm hover-target">
+        <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 font-medium text-sm">
           <span>Explore All GitHub Repositories</span>
           <i data-lucide="external-link" class="w-4 h-4"></i>
         </a>
@@ -308,13 +261,13 @@
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 
         <!-- Bento Item 1 -->
-        <div class="md:col-span-8 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px] hover-target">
+        <div class="md:col-span-8 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px]">
           <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-all duration-500"></div>
           
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Interactive Dashboard
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Medical Telemetry System
               </span>
               <i data-lucide="activity" class="w-6 h-6 text-brand-400"></i>
             </div>
@@ -336,32 +289,27 @@
           </div>
 
           <div class="flex items-center gap-4 mt-8 pt-6 border-t border-slate-800">
-            <a href="https://04-sai.github.io/Medical-Machine/" target="_blank" rel="noopener noreferrer" 
-               class="px-5 py-2.5 rounded-lg bg-brand-500 text-slate-950 font-semibold text-xs md:text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-md hover-target">
-              <i data-lucide="play-circle" class="w-4 h-4"></i>
-              <span>Launch Live Dashboard</span>
-            </a>
             <a href="https://github.com/04-Sai/Medical-Machine" target="_blank" rel="noopener noreferrer" 
-               class="px-5 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs md:text-sm transition-all flex items-center gap-2 hover-target">
+               class="px-5 py-2.5 rounded-lg bg-brand-500 text-white font-semibold text-xs md:text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-md">
               <i data-lucide="github" class="w-4 h-4"></i>
-              <span>View Source Code</span>
+              <span>View Repository</span>
             </a>
           </div>
         </div>
 
         <!-- Bento Item 2 -->
-        <div class="md:col-span-4 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px] hover-target">
-          <div class="absolute -right-10 -top-10 w-48 h-48 bg-sky-500/10 rounded-full blur-2xl group-hover:bg-sky-500/20 transition-all duration-500"></div>
+        <div class="md:col-span-4 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px]">
+          <div class="absolute -right-10 -top-10 w-48 h-48 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-500"></div>
 
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono bg-sky-500/10 border border-sky-500/30 text-sky-400">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/10 border border-purple-500/30 text-purple-400">
                 Hardware & IoT Project
               </span>
-              <i data-lucide="zap" class="w-6 h-6 text-sky-400"></i>
+              <i data-lucide="zap" class="w-6 h-6 text-purple-400"></i>
             </div>
 
-            <h3 class="text-xl font-bold font-heading text-white group-hover:text-sky-400 transition-colors">
+            <h3 class="text-xl font-bold font-heading text-white group-hover:text-purple-400 transition-colors">
               Autonomous Wireless Drone Charging Pad
             </h3>
 
@@ -379,7 +327,7 @@
 
           <div class="mt-6 pt-6 border-t border-slate-800">
             <a href="https://github.com/04-Sai/Autonomous-Smart-Wireless-Drone-Charging-Pad" target="_blank" rel="noopener noreferrer" 
-               class="inline-flex items-center gap-2 text-sky-400 hover:text-sky-300 text-xs md:text-sm font-medium hover-target">
+               class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 text-xs md:text-sm font-medium">
               <span>View Hardware Specs & Repo</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
@@ -387,13 +335,13 @@
         </div>
 
         <!-- Bento Item 3 -->
-        <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between hover-target">
+        <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/10 border border-purple-500/30 text-purple-400">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
                 IoT Internship Project
               </span>
-              <i data-lucide="cpu" class="w-6 h-6 text-purple-400"></i>
+              <i data-lucide="cpu" class="w-6 h-6 text-indigo-400"></i>
             </div>
 
             <h3 class="text-xl font-bold font-heading text-white">
@@ -407,12 +355,12 @@
 
           <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
             <span>Domain: Embedded Edge AI</span>
-            <span class="text-purple-400">Active Learning</span>
+            <span class="text-indigo-400">Active Learning</span>
           </div>
         </div>
 
         <!-- Bento Item 4 -->
-        <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between hover-target">
+        <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="px-3 py-1 rounded-full text-xs font-mono bg-amber-500/10 border border-amber-500/30 text-amber-400">
@@ -445,7 +393,7 @@
       <p class="text-slate-400 text-sm mb-10">Hardware, software, and tools I work with</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card rounded-2xl p-6 hover-target">
+        <div class="glass-card rounded-2xl p-6">
           <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4">
             <i data-lucide="cpu" class="w-5 h-5"></i>
           </div>
@@ -459,29 +407,29 @@
           </ul>
         </div>
 
-        <div class="glass-card rounded-2xl p-6 hover-target">
-          <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4">
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
             <i data-lucide="code" class="w-5 h-5"></i>
           </div>
           <h3 class="text-lg font-bold font-heading text-white mb-3">Programming Languages</h3>
           <ul class="space-y-2 text-sm text-slate-300">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i> C Language</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i> C++ / Embedded C</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i> JavaScript / HTML / CSS</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i> Basic Python</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> C Language</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> C++ / Embedded C</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> JavaScript / HTML / CSS</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Basic Python</li>
           </ul>
         </div>
 
-        <div class="glass-card rounded-2xl p-6 hover-target">
-          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
+        <div class="glass-card rounded-2xl p-6">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
             <i data-lucide="wrench" class="w-5 h-5"></i>
           </div>
           <h3 class="text-lg font-bold font-heading text-white mb-3">Tools & Certifications</h3>
           <ul class="space-y-2 text-sm text-slate-300">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Git & GitHub Version Control</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Cisco Hardware Basics Cert</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Generative AI Literacy Cert</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> VLSI Technical Workshop</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Git & GitHub Version Control</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Cisco Hardware Basics Cert</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Generative AI Literacy Cert</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> VLSI Technical Workshop</li>
           </ul>
         </div>
       </div>
@@ -502,16 +450,16 @@
         </div>
 
         <div class="relative pl-8">
-          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-500 border-4 border-slate-950"></div>
-          <span class="text-xs font-mono text-sky-400">July 2026</span>
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-950"></div>
+          <span class="text-xs font-mono text-purple-400">July 2026</span>
           <h3 class="text-lg font-bold text-white mt-1">IoT Internship: Edge AI EV Charging Station</h3>
           <p class="text-sm text-slate-400">IoT & Edge Intelligence Domain</p>
           <p class="text-sm text-slate-300 mt-2">Hands-on exposure to embedded sensors, data streaming, and power optimization strategies.</p>
         </div>
 
         <div class="relative pl-8">
-          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-950"></div>
-          <span class="text-xs font-mono text-purple-400">August 2026</span>
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-500 border-4 border-slate-950"></div>
+          <span class="text-xs font-mono text-indigo-400">August 2026</span>
           <h3 class="text-lg font-bold text-white mt-1">VLSI Technical Workshop</h3>
           <p class="text-sm text-slate-400">Semiconductor & SoC Interconnects</p>
           <p class="text-sm text-slate-300 mt-2">Completed specialized workshop covering semiconductor chip design fundamentals and System-on-Chip architecture.</p>
@@ -530,17 +478,17 @@
 
           <div class="flex flex-wrap justify-center items-center gap-4 mt-8">
             <a href="mailto:sahilkurbet475@gmail.com" 
-               class="px-6 py-3.5 rounded-xl bg-brand-500 text-slate-950 font-bold text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-lg shadow-brand-500/20 hover-target">
+               class="px-6 py-3.5 rounded-xl bg-brand-500 text-white font-bold text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-lg shadow-brand-500/20">
               <i data-lucide="mail" class="w-4 h-4"></i>
               <span>Email Sahil</span>
             </a>
             <a href="https://linkedin.com/in/sahil-kurbet-ssk" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700 hover-target">
+               class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn Profile</span>
             </a>
             <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700 hover-target">
+               class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700">
               <i data-lucide="file-text" class="w-4 h-4"></i>
               <span>View Resume</span>
             </a>
@@ -558,15 +506,15 @@
       </p>
 
       <div class="flex items-center gap-6 text-slate-400 text-xs md:text-sm">
-        <a href="mailto:sahilkurbet475@gmail.com" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 hover-target">
+        <a href="mailto:sahilkurbet475@gmail.com" class="hover:text-brand-400 transition-colors flex items-center gap-1.5">
           <i data-lucide="mail" class="w-3.5 h-3.5"></i>
           <span>Gmail</span>
         </a>
-        <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 hover-target">
+        <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors flex items-center gap-1.5">
           <i data-lucide="github" class="w-3.5 h-3.5"></i>
           <span>GitHub</span>
         </a>
-        <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 hover-target">
+        <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors flex items-center gap-1.5">
           <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
           <span>Resume</span>
         </a>
@@ -574,47 +522,14 @@
     </div>
   </footer>
 
-  <a href="#" class="fixed bottom-24 right-6 z-40 p-3 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-brand-400 hover:border-brand-500/50 shadow-xl transition-all duration-200 backdrop-blur-md hover:scale-110 hover-target" title="Back to Top">
+  <a href="#" class="fixed bottom-24 right-6 z-40 p-3 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-brand-400 hover:border-brand-500/50 shadow-xl transition-all duration-200 backdrop-blur-md hover:scale-110" title="Back to Top">
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </a>
 
-  <!-- Complete Animations & Three.js Particle System -->
+  <!-- Wave Canvas Background Script -->
   <script>
     // Initialize Lucide Icons
     lucide.createIcons();
-
-    // Custom Interactive Pointer Logic
-    const cursorDot = document.getElementById('cursor-dot');
-    const cursorRing = document.getElementById('cursor-ring');
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-      cursorDot.style.transform = `translate(-50%, -50%)`;
-    });
-
-    function renderCursor() {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
-      
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
-      
-      requestAnimationFrame(renderCursor);
-    }
-    renderCursor();
-
-    // Dynamic Hover Effect for Interactive Elements
-    const hoverTargets = document.querySelectorAll('.hover-target, a, button');
-    hoverTargets.forEach(target => {
-      target.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      target.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
 
     // Profile Card Mouse Parallax Tilt
     const tiltCard = document.getElementById('profile-tilt-card');
@@ -634,74 +549,44 @@
       });
     }
 
-    // Three.js Interactive Animated Particle Canvas Background
+    // Interactive Dynamic Wave Canvas Animation
     const canvas = document.getElementById('bg-canvas');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    const ctx = canvas.getContext('2d');
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const particlesCount = 200;
-    const posArray = new Float32Array(particlesCount * 3);
-    const scaleArray = new Float32Array(particlesCount);
-
-    for (let i = 0; i < particlesCount * 3; i += 3) {
-      posArray[i] = (Math.random() - 0.5) * 15;
-      posArray[i + 1] = (Math.random() - 0.5) * 15;
-      posArray[i + 2] = (Math.random() - 0.5) * 15;
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-    const particlesGeometry = new THREE.BufferGeometry();
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    let step = 0;
+    function animateWaves() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      step += 0.008;
 
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.035,
-      color: 0x2dd4bf,
-      transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending
-    });
-
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-
-    camera.position.z = 5;
-
-    // Mouse Interaction for Particles
-    let targetX = 0;
-    let targetY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      targetX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-      targetY = (e.clientY / window.innerHeight - 0.5) * 0.5;
-    });
-
-    const clock = new THREE.Clock();
-
-    function animateParticles() {
-      const elapsedTime = clock.getElapsedTime();
-
-      particlesMesh.rotation.y = elapsedTime * 0.05;
-      particlesMesh.rotation.x = elapsedTime * 0.02;
-
-      // Mouse Parallax Smooth Interpolation
-      particlesMesh.rotation.y += (targetX - particlesMesh.rotation.y) * 0.05;
-      particlesMesh.rotation.x += (-targetY - particlesMesh.rotation.x) * 0.05;
-
-      renderer.render(scene, camera);
-      requestAnimationFrame(animateParticles);
+      const colors = ['rgba(99, 102, 241, 0.15)', 'rgba(168, 85, 247, 0.12)', 'rgba(232, 121, 249, 0.1)'];
+      
+      for (let i = 0; i < 3; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = colors[i];
+        
+        for (let x = 0; x <= canvas.width; x += 20) {
+          const y = Math.sin(x * 0.002 + step + i) * 80 + 
+                    Math.cos(x * 0.001 + step * 0.5) * 40 + 
+                    (canvas.height * 0.5);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        
+        ctx.lineTo(canvas.width, canvas.height);
+        ctx.lineTo(0, canvas.height);
+        ctx.closePath();
+        ctx.fill();
+      }
+      requestAnimationFrame(animateWaves);
     }
-    animateParticles();
-
-    // Handle Window Resize
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    });
+    animateWaves();
   </script>
 </body>
 </html>
