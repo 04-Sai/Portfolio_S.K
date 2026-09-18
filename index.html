@@ -8,7 +8,7 @@
   <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Three.js for Particle Hero Canvas -->
+  <!-- Three.js for Particle Canvas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <script>
@@ -60,10 +60,9 @@
       background-color: #060911;
       color: #f1f5f9;
       overflow-x: hidden;
-      cursor: none; /* Hide standard system cursor for custom interactive pointer */
+      cursor: none;
     }
 
-    /* Custom Cursor Styles */
     #cursor-dot {
       width: 8px;
       height: 8px;
@@ -185,7 +184,7 @@
 
       <!-- Resume Button -->
       <div class="flex items-center gap-4">
-        <a href="https://drive.google.com/file/d/1X5Xw8d8q1q0w5w_v4_3X2_X1_X0_X/view" target="_blank" rel="noopener noreferrer" 
+        <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" 
            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500 hover:text-slate-950 font-medium text-sm transition-all duration-200 hover-target">
           <i data-lucide="file-text" class="w-4 h-4"></i>
           <span>Resume</span>
@@ -234,7 +233,7 @@
           </div>
         </div>
 
-        <!-- Right Profile Image Card with Interactive Cursor Parallax -->
+        <!-- Right Profile Image Card -->
         <div class="lg:col-span-4 flex justify-center">
           <div id="profile-tilt-card" class="relative group tilt-card hover-target">
             <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-sky-500 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
@@ -308,7 +307,7 @@
       <!-- Bento Grid Layout -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 
-        <!-- Bento Item 1: Medical Machine Telemetry (Large Feature Card) -->
+        <!-- Bento Item 1 -->
         <div class="md:col-span-8 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px] hover-target">
           <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-all duration-500"></div>
           
@@ -350,7 +349,7 @@
           </div>
         </div>
 
-        <!-- Bento Item 2: Smart Wireless Drone Charging Pad -->
+        <!-- Bento Item 2 -->
         <div class="md:col-span-4 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px] hover-target">
           <div class="absolute -right-10 -top-10 w-48 h-48 bg-sky-500/10 rounded-full blur-2xl group-hover:bg-sky-500/20 transition-all duration-500"></div>
 
@@ -387,7 +386,7 @@
           </div>
         </div>
 
-        <!-- Bento Item 3: Edge AI EV Charging Internship -->
+        <!-- Bento Item 3 -->
         <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between hover-target">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -412,7 +411,7 @@
           </div>
         </div>
 
-        <!-- Bento Item 4: MakeForBelagavi Hackathon Victory -->
+        <!-- Bento Item 4 -->
         <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between hover-target">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -446,7 +445,6 @@
       <p class="text-slate-400 text-sm mb-10">Hardware, software, and tools I work with</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Hardware & Embedded -->
         <div class="glass-card rounded-2xl p-6 hover-target">
           <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4">
             <i data-lucide="cpu" class="w-5 h-5"></i>
@@ -461,7 +459,6 @@
           </ul>
         </div>
 
-        <!-- Programming Languages -->
         <div class="glass-card rounded-2xl p-6 hover-target">
           <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4">
             <i data-lucide="code" class="w-5 h-5"></i>
@@ -475,7 +472,6 @@
           </ul>
         </div>
 
-        <!-- Developer Tools & Certs -->
         <div class="glass-card rounded-2xl p-6 hover-target">
           <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
             <i data-lucide="wrench" class="w-5 h-5"></i>
@@ -491,14 +487,12 @@
       </div>
     </section>
 
-    <!-- Experience & Education Timeline -->
+    <!-- Experience Timeline -->
     <section id="achievements" class="max-w-7xl mx-auto px-6 py-16">
       <h2 class="text-3xl font-bold font-heading text-white mb-2">Education & Activities</h2>
       <p class="text-slate-400 text-sm mb-12">Academic journey and practical workshops</p>
 
       <div class="relative border-l border-slate-800 ml-4 md:ml-6 space-y-10">
-
-        <!-- Item 1 -->
         <div class="relative pl-8">
           <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-500 border-4 border-slate-950"></div>
           <span class="text-xs font-mono text-brand-400">Present</span>
@@ -507,7 +501,6 @@
           <p class="text-sm text-slate-300 mt-2">Focused on microcontrollers, embedded systems, communication systems, signal processing, and IoT hardware.</p>
         </div>
 
-        <!-- Item 2 -->
         <div class="relative pl-8">
           <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-500 border-4 border-slate-950"></div>
           <span class="text-xs font-mono text-sky-400">July 2026</span>
@@ -516,7 +509,6 @@
           <p class="text-sm text-slate-300 mt-2">Hands-on exposure to embedded sensors, data streaming, and power optimization strategies.</p>
         </div>
 
-        <!-- Item 3 -->
         <div class="relative pl-8">
           <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-950"></div>
           <span class="text-xs font-mono text-purple-400">August 2026</span>
@@ -524,7 +516,6 @@
           <p class="text-sm text-slate-400">Semiconductor & SoC Interconnects</p>
           <p class="text-sm text-slate-300 mt-2">Completed specialized workshop covering semiconductor chip design fundamentals and System-on-Chip architecture.</p>
         </div>
-
       </div>
     </section>
 
@@ -548,7 +539,7 @@
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn Profile</span>
             </a>
-            <a href="https://drive.google.com/file/d/1X5Xw8d8q1q0w5w_v4_3X2_X1_X0_X/view" target="_blank" rel="noopener noreferrer" 
+            <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" 
                class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700 hover-target">
               <i data-lucide="file-text" class="w-4 h-4"></i>
               <span>View Resume</span>
@@ -560,7 +551,6 @@
 
   </main>
 
-  <!-- Clean Footer -->
   <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/80 py-8">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-slate-400 text-xs md:text-sm font-mono">
@@ -576,7 +566,7 @@
           <i data-lucide="github" class="w-3.5 h-3.5"></i>
           <span>GitHub</span>
         </a>
-        <a href="https://drive.google.com/file/d/1X5Xw8d8q1q0w5w_v4_3X2_X1_X0_X/view" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 hover-target">
+        <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 hover-target">
           <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
           <span>Resume</span>
         </a>
@@ -584,120 +574,134 @@
     </div>
   </footer>
 
-  <!-- Floating Back to Top Button -->
   <a href="#" class="fixed bottom-24 right-6 z-40 p-3 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-brand-400 hover:border-brand-500/50 shadow-xl transition-all duration-200 backdrop-blur-md hover:scale-110 hover-target" title="Back to Top">
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </a>
 
-  <!-- Script for Animations & Particle Background -->
+  <!-- Complete Animations & Three.js Particle System -->
   <script>
-    if (window.lucide) {
-      lucide.createIcons();
-    }
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-    // Interactive Magnet Cursor System
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
+    // Custom Interactive Pointer Logic
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
 
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-
-      dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+      cursorDot.style.transform = `translate(-50%, -50%)`;
     });
 
-    // Smooth Lerp animation for cursor outer ring
     function renderCursor() {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      ring.style.left = `${ringX}px`;
-      ring.style.top = `${ringY}px`;
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      
+      cursorRing.style.left = `${ringX}px`;
+      cursorRing.style.top = `${ringY}px`;
+      
       requestAnimationFrame(renderCursor);
     }
     renderCursor();
 
-    // Hover Target Expansion for Cursor
-    const hoverTargets = document.querySelectorAll('a, button, .hover-target');
-    hoverTargets.forEach((target) => {
+    // Dynamic Hover Effect for Interactive Elements
+    const hoverTargets = document.querySelectorAll('.hover-target, a, button');
+    hoverTargets.forEach(target => {
       target.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
       target.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
 
-    // Dynamic 3D Tilt Effect on Profile Image Card
+    // Profile Card Mouse Parallax Tilt
     const tiltCard = document.getElementById('profile-tilt-card');
     if (tiltCard) {
-      window.addEventListener('mousemove', (e) => {
-        const { innerWidth, innerHeight } = window;
-        const xPercent = (e.clientX / innerWidth) - 0.5;
-        const yPercent = (e.clientY / innerHeight) - 0.5;
+      tiltCard.addEventListener('mousemove', (e) => {
+        const rect = tiltCard.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const tiltX = (y / rect.height) * -20;
+        const tiltY = (x / rect.width) * 20;
+        
+        tiltCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
 
-        const rotateX = yPercent * -20; 
-        const rotateY = xPercent * 20;
-
-        tiltCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      tiltCard.addEventListener('mouseleave', () => {
+        tiltCard.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
       });
     }
 
-    // Particle Canvas with Mouse Reaction
+    // Three.js Interactive Animated Particle Canvas Background
     const canvas = document.getElementById('bg-canvas');
-    if (canvas) {
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const particlesCount = 200;
+    const posArray = new Float32Array(particlesCount * 3);
+    const scaleArray = new Float32Array(particlesCount);
+
+    for (let i = 0; i < particlesCount * 3; i += 3) {
+      posArray[i] = (Math.random() - 0.5) * 15;
+      posArray[i + 1] = (Math.random() - 0.5) * 15;
+      posArray[i + 2] = (Math.random() - 0.5) * 15;
+    }
+
+    const particlesGeometry = new THREE.BufferGeometry();
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.035,
+      color: 0x2dd4bf,
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending
+    });
+
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    camera.position.z = 5;
+
+    // Mouse Interaction for Particles
+    let targetX = 0;
+    let targetY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+      targetY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+    });
+
+    const clock = new THREE.Clock();
+
+    function animateParticles() {
+      const elapsedTime = clock.getElapsedTime();
+
+      particlesMesh.rotation.y = elapsedTime * 0.05;
+      particlesMesh.rotation.x = elapsedTime * 0.02;
+
+      // Mouse Parallax Smooth Interpolation
+      particlesMesh.rotation.y += (targetX - particlesMesh.rotation.y) * 0.05;
+      particlesMesh.rotation.x += (-targetY - particlesMesh.rotation.x) * 0.05;
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Handle Window Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-      const particlesCount = 800;
-      const posArray = new Float32Array(particlesCount * 3);
-
-      for(let i = 0; i < particlesCount * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 15;
-      }
-
-      const particlesGeometry = new THREE.BufferGeometry();
-      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-      const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.025,
-        color: 0x2dd4bf,
-        transparent: true,
-        opacity: 0.6
-      });
-
-      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-      scene.add(particlesMesh);
-
-      camera.position.z = 3;
-
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-
-      function animateParticles() {
-        requestAnimationFrame(animateParticles);
-        particlesMesh.rotation.y += 0.0008;
-        particlesMesh.rotation.x += 0.0004;
-
-        // Interactive cursor drift
-        const targetRotY = (mouseX / window.innerWidth - 0.5) * 0.5;
-        const targetRotX = (mouseY / window.innerHeight - 0.5) * 0.5;
-
-        particlesMesh.rotation.y += (targetRotY - particlesMesh.rotation.y) * 0.02;
-        particlesMesh.rotation.x += (targetRotX - particlesMesh.rotation.x) * 0.02;
-
-        renderer.render(scene, camera);
-      }
-
-      animateParticles();
-    }
+    });
   </script>
 </body>
 </html>
