@@ -16,18 +16,18 @@
         extend: {
           colors: {
             brand: {
-              50: '#eep2ff',
-              100: '#e0e7ff',
-              400: '#818cf8',
-              500: '#6366f1',
-              600: '#4f46e5',
-              900: '#312e81',
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              900: '#064e3b',
             },
             cyber: {
-              bg: '#0b0f19',
-              card: 'rgba(15, 23, 42, 0.75)',
-              border: 'rgba(129, 140, 248, 0.2)',
-              accent: '#c084fc'
+              bg: '#030712',
+              card: 'rgba(17, 24, 39, 0.75)',
+              border: 'rgba(52, 211, 153, 0.2)',
+              accent: '#22d3ee'
             }
           },
           animation: {
@@ -55,8 +55,8 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #0b0f19;
-      color: #f1f5f9;
+      background-color: #030712;
+      color: #f3f4f6;
       overflow-x: hidden;
     }
 
@@ -65,7 +65,7 @@
     }
 
     .glass-card {
-      background: rgba(15, 23, 42, 0.75);
+      background: rgba(17, 24, 39, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -74,12 +74,12 @@
     }
 
     .glass-card:hover {
-      border-color: rgba(129, 140, 248, 0.4);
-      box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.15);
+      border-color: rgba(52, 211, 153, 0.4);
+      box-shadow: 0 12px 40px 0 rgba(16, 185, 129, 0.15);
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #e879f9 100%);
+      background: linear-gradient(135deg, #34d399 0%, #22d3ee 50%, #38bdf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -97,8 +97,8 @@
     .grid-pattern {
       background-size: 40px 40px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
 
     .tilt-card {
@@ -116,7 +116,7 @@
   <div class="fixed inset-0 grid-pattern pointer-events-none z-0"></div>
 
   <!-- Navigation Bar -->
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/70 border-b border-slate-800/80 transition-all duration-300">
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-gray-950/70 border-b border-gray-800/80 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3 group">
         <img src="img.jpg" alt="Sahil Kurbet" class="w-10 h-10 rounded-xl object-cover border border-brand-500/40 shadow-md group-hover:scale-105 transition-transform">
@@ -154,7 +154,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Left Hero Content -->
         <div class="lg:col-span-8">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 border border-brand-500/30 text-brand-400 text-xs font-mono mb-6 w-fit backdrop-blur-sm shadow-inner">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-900/80 border border-brand-500/30 text-brand-400 text-xs font-mono mb-6 w-fit backdrop-blur-sm shadow-inner">
             <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
             <span>Jain College of Engineering & Research | ECE Student</span>
           </div>
@@ -169,17 +169,17 @@
           </p>
 
           <div class="flex flex-wrap items-center gap-4">
-            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-purple-500 text-white font-semibold text-sm hover:shadow-lg hover:shadow-brand-500/25 hover:scale-105 transition-all flex items-center gap-2">
+            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-cyan-500 text-gray-950 font-bold text-sm hover:shadow-lg hover:shadow-brand-500/25 hover:scale-105 transition-all flex items-center gap-2">
               <span>View Live Projects</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
             <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center gap-2">
+               class="px-6 py-3.5 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-gray-600 text-slate-200 font-semibold text-sm hover:bg-gray-800 transition-all flex items-center gap-2">
               <i data-lucide="github" class="w-4 h-4"></i>
               <span>GitHub Profile</span>
             </a>
             <a href="https://linkedin.com/in/sahil-kurbet-ssk" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-purple-500/50 text-purple-400 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center gap-2">
+               class="px-6 py-3.5 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-cyan-500/50 text-cyan-400 font-semibold text-sm hover:bg-gray-800 transition-all flex items-center gap-2">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn</span>
             </a>
@@ -189,7 +189,7 @@
         <!-- Right Profile Image Card -->
         <div class="lg:col-span-4 flex justify-center">
           <div id="profile-tilt-card" class="relative group tilt-card">
-            <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-purple-500 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-cyan-500 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
             <div class="relative glass-card p-3 rounded-3xl overflow-hidden max-w-[280px] sm:max-w-[320px]">
               <img src="img.jpg" alt="Sahil Sanjay Kurbet" class="w-full h-[320px] sm:h-[360px] object-cover rounded-2xl filter brightness-105 contrast-105 pointer-events-none">
               <div class="mt-4 px-2 pb-2 text-center pointer-events-none">
@@ -202,20 +202,20 @@
       </div>
 
       <!-- Quick Metrics Bar -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-slate-800/80 max-w-4xl">
-        <div class="glass-card p-4 rounded-xl border border-slate-800">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-gray-800/80 max-w-4xl">
+        <div class="glass-card p-4 rounded-xl border border-gray-800">
           <p class="text-2xl font-bold font-heading text-white">Top 5 Finish</p>
           <p class="text-xs text-slate-400 font-mono mt-1">MakeForBelagavi (83 Teams)</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-slate-800">
+        <div class="glass-card p-4 rounded-xl border border-gray-800">
           <p class="text-2xl font-bold font-heading text-white">ESP32 & IoT</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Wireless Drone Charging</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-slate-800">
+        <div class="glass-card p-4 rounded-xl border border-gray-800">
           <p class="text-2xl font-bold font-heading text-white">Live Telemetry</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Medical Safety Dashboard</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-slate-800">
+        <div class="glass-card p-4 rounded-xl border border-gray-800">
           <p class="text-2xl font-bold font-heading text-white">Internship</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Edge AI EV Charging</p>
         </div>
@@ -223,23 +223,23 @@
     </section>
 
     <!-- Infinite Tech Scroll Banner -->
-    <section class="py-6 border-y border-slate-800/60 bg-slate-950/40 overflow-hidden mb-20">
+    <section class="py-6 border-y border-gray-800/60 bg-gray-950/40 overflow-hidden mb-20">
       <div class="flex whitespace-nowrap animate-marquee">
         <div class="flex items-center gap-12 text-sm font-mono text-slate-400 px-6">
           <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i> ESP32 Microcontrollers</span>
-          <span class="flex items-center gap-2"><i data-lucide="radio" class="w-4 h-4 text-sky-400"></i> ESP-NOW Protocol</span>
+          <span class="flex items-center gap-2"><i data-lucide="radio" class="w-4 h-4 text-cyan-400"></i> ESP-NOW Protocol</span>
           <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Inductive Power Transfer</span>
           <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i> Real-time Telemetry</span>
           <span class="flex items-center gap-2"><i data-lucide="code-2" class="w-4 h-4 text-brand-400"></i> C / C++ / Embedded C</span>
-          <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-purple-400"></i> React & Web Dashboards</span>
+          <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-cyan-400"></i> React & Web Dashboards</span>
         </div>
         <div class="flex items-center gap-12 text-sm font-mono text-slate-400 px-6" aria-hidden="true">
           <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i> ESP32 Microcontrollers</span>
-          <span class="flex items-center gap-2"><i data-lucide="radio" class="w-4 h-4 text-sky-400"></i> ESP-NOW Protocol</span>
+          <span class="flex items-center gap-2"><i data-lucide="radio" class="w-4 h-4 text-cyan-400"></i> ESP-NOW Protocol</span>
           <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Inductive Power Transfer</span>
           <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i> Real-time Telemetry</span>
           <span class="flex items-center gap-2"><i data-lucide="code-2" class="w-4 h-4 text-brand-400"></i> C / C++ / Embedded C</span>
-          <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-purple-400"></i> React & Web Dashboards</span>
+          <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-cyan-400"></i> React & Web Dashboards</span>
         </div>
       </div>
     </section>
@@ -267,7 +267,7 @@
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Medical Telemetry System
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Interactive Dashboard
               </span>
               <i data-lucide="activity" class="w-6 h-6 text-brand-400"></i>
             </div>
@@ -281,35 +281,40 @@
             </p>
 
             <div class="flex flex-wrap gap-2 mt-6">
-              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">React</span>
-              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">JavaScript</span>
-              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Telemetry</span>
-              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Safety Interlocks</span>
+              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono">React</span>
+              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono">JavaScript</span>
+              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono">Telemetry</span>
+              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono">Safety Interlocks</span>
             </div>
           </div>
 
-          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-slate-800">
+          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-gray-800">
+            <a href="https://04-sai.github.io/Medical-Machine/" target="_blank" rel="noopener noreferrer" 
+               class="px-5 py-2.5 rounded-lg bg-brand-500 text-gray-950 font-bold text-xs md:text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-md">
+              <i data-lucide="play-circle" class="w-4 h-4"></i>
+              <span>Launch Live Dashboard</span>
+            </a>
             <a href="https://github.com/04-Sai/Medical-Machine" target="_blank" rel="noopener noreferrer" 
-               class="px-5 py-2.5 rounded-lg bg-brand-500 text-white font-semibold text-xs md:text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-md">
+               class="px-5 py-2.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-slate-200 font-medium text-xs md:text-sm transition-all flex items-center gap-2 border border-gray-800">
               <i data-lucide="github" class="w-4 h-4"></i>
-              <span>View Repository</span>
+              <span>Source Code</span>
             </a>
           </div>
         </div>
 
         <!-- Bento Item 2 -->
         <div class="md:col-span-4 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px]">
-          <div class="absolute -right-10 -top-10 w-48 h-48 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all duration-500"></div>
+          <div class="absolute -right-10 -top-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all duration-500"></div>
 
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/10 border border-purple-500/30 text-purple-400">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
                 Hardware & IoT Project
               </span>
-              <i data-lucide="zap" class="w-6 h-6 text-purple-400"></i>
+              <i data-lucide="zap" class="w-6 h-6 text-cyan-400"></i>
             </div>
 
-            <h3 class="text-xl font-bold font-heading text-white group-hover:text-purple-400 transition-colors">
+            <h3 class="text-xl font-bold font-heading text-white group-hover:text-cyan-400 transition-colors">
               Autonomous Wireless Drone Charging Pad
             </h3>
 
@@ -318,16 +323,16 @@
             </p>
 
             <div class="flex flex-wrap gap-2 mt-4">
-              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono">ESP32</span>
-              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono">ESP-NOW</span>
-              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono">C++</span>
-              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono">Sensors</span>
+              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono">ESP32</span>
+              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono">ESP-NOW</span>
+              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono">C++</span>
+              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono">Sensors</span>
             </div>
           </div>
 
-          <div class="mt-6 pt-6 border-t border-slate-800">
+          <div class="mt-6 pt-6 border-t border-gray-800">
             <a href="https://github.com/04-Sai/Autonomous-Smart-Wireless-Drone-Charging-Pad" target="_blank" rel="noopener noreferrer" 
-               class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 text-xs md:text-sm font-medium">
+               class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-xs md:text-sm font-medium">
               <span>View Hardware Specs & Repo</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
@@ -338,10 +343,10 @@
         <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 border border-indigo-500/30 text-indigo-400">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
                 IoT Internship Project
               </span>
-              <i data-lucide="cpu" class="w-6 h-6 text-indigo-400"></i>
+              <i data-lucide="cpu" class="w-6 h-6 text-emerald-400"></i>
             </div>
 
             <h3 class="text-xl font-bold font-heading text-white">
@@ -353,9 +358,9 @@
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+          <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
             <span>Domain: Embedded Edge AI</span>
-            <span class="text-indigo-400">Active Learning</span>
+            <span class="text-emerald-400">Active Learning</span>
           </div>
         </div>
 
@@ -378,7 +383,7 @@
             </p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+          <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
             <span>Location: VTU Belagavi</span>
             <span class="text-amber-400">Top 5 / 83 Teams</span>
           </div>
@@ -408,28 +413,28 @@
         </div>
 
         <div class="glass-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4">
             <i data-lucide="code" class="w-5 h-5"></i>
           </div>
           <h3 class="text-lg font-bold font-heading text-white mb-3">Programming Languages</h3>
           <ul class="space-y-2 text-sm text-slate-300">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> C Language</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> C++ / Embedded C</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> JavaScript / HTML / CSS</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Basic Python</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-400"></i> C Language</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-400"></i> C++ / Embedded C</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-400"></i> JavaScript / HTML / CSS</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-400"></i> Basic Python</li>
           </ul>
         </div>
 
         <div class="glass-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
             <i data-lucide="wrench" class="w-5 h-5"></i>
           </div>
           <h3 class="text-lg font-bold font-heading text-white mb-3">Tools & Certifications</h3>
           <ul class="space-y-2 text-sm text-slate-300">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Git & GitHub Version Control</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Cisco Hardware Basics Cert</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> Generative AI Literacy Cert</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-indigo-400"></i> VLSI Technical Workshop</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Git & GitHub Version Control</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Cisco Hardware Basics Cert</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Generative AI Literacy Cert</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> VLSI Technical Workshop</li>
           </ul>
         </div>
       </div>
@@ -440,9 +445,9 @@
       <h2 class="text-3xl font-bold font-heading text-white mb-2">Education & Activities</h2>
       <p class="text-slate-400 text-sm mb-12">Academic journey and practical workshops</p>
 
-      <div class="relative border-l border-slate-800 ml-4 md:ml-6 space-y-10">
+      <div class="relative border-l border-gray-800 ml-4 md:ml-6 space-y-10">
         <div class="relative pl-8">
-          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-500 border-4 border-slate-950"></div>
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-500 border-4 border-gray-950"></div>
           <span class="text-xs font-mono text-brand-400">Present</span>
           <h3 class="text-lg font-bold text-white mt-1">B.E. in Electronics & Communication Engineering</h3>
           <p class="text-sm text-slate-400">Jain College of Engineering and Research, Belagavi (VTU)</p>
@@ -450,16 +455,16 @@
         </div>
 
         <div class="relative pl-8">
-          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-950"></div>
-          <span class="text-xs font-mono text-purple-400">July 2026</span>
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-cyan-500 border-4 border-gray-950"></div>
+          <span class="text-xs font-mono text-cyan-400">July 2026</span>
           <h3 class="text-lg font-bold text-white mt-1">IoT Internship: Edge AI EV Charging Station</h3>
           <p class="text-sm text-slate-400">IoT & Edge Intelligence Domain</p>
           <p class="text-sm text-slate-300 mt-2">Hands-on exposure to embedded sensors, data streaming, and power optimization strategies.</p>
         </div>
 
         <div class="relative pl-8">
-          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-500 border-4 border-slate-950"></div>
-          <span class="text-xs font-mono text-indigo-400">August 2026</span>
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-gray-950"></div>
+          <span class="text-xs font-mono text-emerald-400">August 2026</span>
           <h3 class="text-lg font-bold text-white mt-1">VLSI Technical Workshop</h3>
           <p class="text-sm text-slate-400">Semiconductor & SoC Interconnects</p>
           <p class="text-sm text-slate-300 mt-2">Completed specialized workshop covering semiconductor chip design fundamentals and System-on-Chip architecture.</p>
@@ -478,17 +483,17 @@
 
           <div class="flex flex-wrap justify-center items-center gap-4 mt-8">
             <a href="mailto:sahilkurbet475@gmail.com" 
-               class="px-6 py-3.5 rounded-xl bg-brand-500 text-white font-bold text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-lg shadow-brand-500/20">
+               class="px-6 py-3.5 rounded-xl bg-brand-500 text-gray-950 font-bold text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-lg shadow-brand-500/20">
               <i data-lucide="mail" class="w-4 h-4"></i>
               <span>Email Sahil</span>
             </a>
             <a href="https://linkedin.com/in/sahil-kurbet-ssk" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700">
+               class="px-6 py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-gray-800">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn Profile</span>
             </a>
             <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700">
+               class="px-6 py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-gray-800">
               <i data-lucide="file-text" class="w-4 h-4"></i>
               <span>View Resume</span>
             </a>
@@ -499,7 +504,7 @@
 
   </main>
 
-  <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/80 py-8">
+  <footer class="relative z-10 border-t border-gray-800/80 bg-gray-950/80 py-8">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-slate-400 text-xs md:text-sm font-mono">
         © Made by S.K
@@ -522,7 +527,7 @@
     </div>
   </footer>
 
-  <a href="#" class="fixed bottom-24 right-6 z-40 p-3 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-brand-400 hover:border-brand-500/50 shadow-xl transition-all duration-200 backdrop-blur-md hover:scale-110" title="Back to Top">
+  <a href="#" class="fixed bottom-24 right-6 z-40 p-3 rounded-xl bg-gray-900/90 border border-gray-700 text-slate-300 hover:text-brand-400 hover:border-brand-500/50 shadow-xl transition-all duration-200 backdrop-blur-md hover:scale-110" title="Back to Top">
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </a>
 
@@ -565,7 +570,7 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       step += 0.008;
 
-      const colors = ['rgba(99, 102, 241, 0.15)', 'rgba(168, 85, 247, 0.12)', 'rgba(232, 121, 249, 0.1)'];
+      const colors = ['rgba(16, 185, 129, 0.12)', 'rgba(34, 211, 238, 0.10)', 'rgba(56, 189, 248, 0.08)'];
       
       for (let i = 0; i < 3; i++) {
         ctx.beginPath();
