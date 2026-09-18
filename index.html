@@ -33,16 +33,22 @@
           animation: {
             'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out 3s infinite',
             'marquee': 'marquee 25s linear infinite',
+            'glow': 'glow 3s ease-in-out infinite alternate',
           },
           keyframes: {
             float: {
               '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-10px)' },
+              '50%': { transform: 'translateY(-12px)' },
             },
             marquee: {
               '0%': { transform: 'translateX(0%)' },
               '100%': { transform: 'translateX(-50%)' },
+            },
+            glow: {
+              '0%': { opacity: '0.3', transform: 'scale(1)' },
+              '100%': { opacity: '0.7', transform: 'scale(1.05)' }
             }
           }
         }
@@ -70,12 +76,13 @@
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     .glass-card:hover {
-      border-color: rgba(52, 211, 153, 0.4);
-      box-shadow: 0 12px 40px 0 rgba(16, 185, 129, 0.15);
+      border-color: rgba(52, 211, 153, 0.5);
+      box-shadow: 0 20px 50px 0 rgba(16, 185, 129, 0.2);
+      transform: translateY(-4px);
     }
 
     .gradient-text {
@@ -109,7 +116,7 @@
 </head>
 <body class="relative min-h-screen text-slate-200 antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- Background Wave Canvas -->
+  <!-- Background Particle & Wave Canvas -->
   <canvas id="bg-canvas"></canvas>
 
   <!-- Ambient Grid -->
@@ -119,7 +126,7 @@
   <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-gray-950/70 border-b border-gray-800/80 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3 group">
-        <img src="img.jpg" alt="Sahil Kurbet" class="w-10 h-10 rounded-xl object-cover border border-brand-500/40 shadow-md group-hover:scale-105 transition-transform">
+        <img src="img.jpg" alt="Sahil Kurbet" class="w-10 h-10 rounded-xl object-cover border border-brand-500/40 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
         <div>
           <span class="font-heading font-bold text-lg tracking-wider text-slate-100 block group-hover:text-brand-400 transition-colors">SAHIL KURBET</span>
           <span class="text-xs text-brand-400 font-mono tracking-widest uppercase">ECE Undergraduate</span>
@@ -138,7 +145,7 @@
       <!-- Resume Button -->
       <div class="flex items-center gap-4">
         <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" 
-           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500 hover:text-white font-medium text-sm transition-all duration-200">
+           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500 hover:text-white font-medium text-sm transition-all duration-300 hover:scale-105 shadow-md">
           <i data-lucide="file-text" class="w-4 h-4"></i>
           <span>Resume</span>
         </a>
@@ -154,7 +161,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Left Hero Content -->
         <div class="lg:col-span-8">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-900/80 border border-brand-500/30 text-brand-400 text-xs font-mono mb-6 w-fit backdrop-blur-sm shadow-inner">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-900/80 border border-brand-500/30 text-brand-400 text-xs font-mono mb-6 w-fit backdrop-blur-sm shadow-inner animate-pulse-slow">
             <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
             <span>Jain College of Engineering & Research | ECE Student</span>
           </div>
@@ -169,29 +176,29 @@
           </p>
 
           <div class="flex flex-wrap items-center gap-4">
-            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-cyan-500 text-gray-950 font-bold text-sm hover:shadow-lg hover:shadow-brand-500/25 hover:scale-105 transition-all flex items-center gap-2">
+            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-cyan-500 text-gray-950 font-bold text-sm hover:shadow-lg hover:shadow-brand-500/25 hover:scale-105 transition-all flex items-center gap-2 group">
               <span>View Live Projects</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
             </a>
             <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-gray-600 text-slate-200 font-semibold text-sm hover:bg-gray-800 transition-all flex items-center gap-2">
+               class="px-6 py-3.5 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-gray-600 text-slate-200 font-semibold text-sm hover:bg-gray-800 transition-all flex items-center gap-2 hover:scale-105">
               <i data-lucide="github" class="w-4 h-4"></i>
               <span>GitHub Profile</span>
             </a>
             <a href="https://linkedin.com/in/sahil-kurbet-ssk" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-cyan-500/50 text-cyan-400 font-semibold text-sm hover:bg-gray-800 transition-all flex items-center gap-2">
+               class="px-6 py-3.5 rounded-xl bg-gray-900/80 border border-gray-800 hover:border-cyan-500/50 text-cyan-400 font-semibold text-sm hover:bg-gray-800 transition-all flex items-center gap-2 hover:scale-105">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn</span>
             </a>
           </div>
         </div>
 
-        <!-- Right Profile Image Card -->
-        <div class="lg:col-span-4 flex justify-center">
+        <!-- Right Profile Image Card with Floating Floating Animation -->
+        <div class="lg:col-span-4 flex justify-center animate-float">
           <div id="profile-tilt-card" class="relative group tilt-card">
-            <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-cyan-500 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-cyan-500 rounded-3xl blur opacity-40 group-hover:opacity-80 transition duration-500 animate-glow"></div>
             <div class="relative glass-card p-3 rounded-3xl overflow-hidden max-w-[280px] sm:max-w-[320px]">
-              <img src="img.jpg" alt="Sahil Sanjay Kurbet" class="w-full h-[320px] sm:h-[360px] object-cover rounded-2xl filter brightness-105 contrast-105 pointer-events-none">
+              <img src="img.jpg" alt="Sahil Sanjay Kurbet" class="w-full h-[320px] sm:h-[360px] object-cover rounded-2xl filter brightness-105 contrast-105 pointer-events-none group-hover:scale-105 transition-transform duration-500">
               <div class="mt-4 px-2 pb-2 text-center pointer-events-none">
                 <p class="font-heading font-bold text-white text-lg">Sahil Kurbet</p>
                 <p class="text-xs text-brand-400 font-mono mt-0.5">Electronics & Communication Student</p>
@@ -203,19 +210,19 @@
 
       <!-- Quick Metrics Bar -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-gray-800/80 max-w-4xl">
-        <div class="glass-card p-4 rounded-xl border border-gray-800">
+        <div class="glass-card p-4 rounded-xl border border-gray-800 hover:scale-105 transition-transform">
           <p class="text-2xl font-bold font-heading text-white">Top 5 Finish</p>
           <p class="text-xs text-slate-400 font-mono mt-1">MakeForBelagavi (83 Teams)</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-gray-800">
+        <div class="glass-card p-4 rounded-xl border border-gray-800 hover:scale-105 transition-transform">
           <p class="text-2xl font-bold font-heading text-white">ESP32 & IoT</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Wireless Drone Charging</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-gray-800">
+        <div class="glass-card p-4 rounded-xl border border-gray-800 hover:scale-105 transition-transform">
           <p class="text-2xl font-bold font-heading text-white">Live Telemetry</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Medical Safety Dashboard</p>
         </div>
-        <div class="glass-card p-4 rounded-xl border border-gray-800">
+        <div class="glass-card p-4 rounded-xl border border-gray-800 hover:scale-105 transition-transform">
           <p class="text-2xl font-bold font-heading text-white">Internship</p>
           <p class="text-xs text-slate-400 font-mono mt-1">Edge AI EV Charging</p>
         </div>
@@ -223,23 +230,23 @@
     </section>
 
     <!-- Infinite Tech Scroll Banner -->
-    <section class="py-6 border-y border-gray-800/60 bg-gray-950/40 overflow-hidden mb-20">
+    <section class="py-6 border-y border-gray-800/60 bg-gray-950/40 overflow-hidden mb-20 shadow-inner">
       <div class="flex whitespace-nowrap animate-marquee">
         <div class="flex items-center gap-12 text-sm font-mono text-slate-400 px-6">
-          <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i> ESP32 Microcontrollers</span>
-          <span class="flex items-center gap-2"><i data-lucide="radio" class="w-4 h-4 text-cyan-400"></i> ESP-NOW Protocol</span>
-          <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Inductive Power Transfer</span>
-          <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i> Real-time Telemetry</span>
-          <span class="flex items-center gap-2"><i data-lucide="code-2" class="w-4 h-4 text-brand-400"></i> C / C++ / Embedded C</span>
-          <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-cyan-400"></i> React & Web Dashboards</span>
+          <span class="flex items-center gap-2 hover:text-brand-400 transition-colors"><i data-lucide="cpu" class="w-4 h-4 text-brand-400 animate-spin" style="animation-duration: 8s;"></i> ESP32 Microcontrollers</span>
+          <span class="flex items-center gap-2 hover:text-cyan-400 transition-colors"><i data-lucide="radio" class="w-4 h-4 text-cyan-400"></i> ESP-NOW Protocol</span>
+          <span class="flex items-center gap-2 hover:text-amber-400 transition-colors"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Inductive Power Transfer</span>
+          <span class="flex items-center gap-2 hover:text-emerald-400 transition-colors"><i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i> Real-time Telemetry</span>
+          <span class="flex items-center gap-2 hover:text-brand-400 transition-colors"><i data-lucide="code-2" class="w-4 h-4 text-brand-400"></i> C / C++ / Embedded C</span>
+          <span class="flex items-center gap-2 hover:text-cyan-400 transition-colors"><i data-lucide="layout" class="w-4 h-4 text-cyan-400"></i> React & Web Dashboards</span>
         </div>
         <div class="flex items-center gap-12 text-sm font-mono text-slate-400 px-6" aria-hidden="true">
-          <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i> ESP32 Microcontrollers</span>
-          <span class="flex items-center gap-2"><i data-lucide="radio" class="w-4 h-4 text-cyan-400"></i> ESP-NOW Protocol</span>
-          <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Inductive Power Transfer</span>
-          <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i> Real-time Telemetry</span>
-          <span class="flex items-center gap-2"><i data-lucide="code-2" class="w-4 h-4 text-brand-400"></i> C / C++ / Embedded C</span>
-          <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-cyan-400"></i> React & Web Dashboards</span>
+          <span class="flex items-center gap-2 hover:text-brand-400 transition-colors"><i data-lucide="cpu" class="w-4 h-4 text-brand-400 animate-spin" style="animation-duration: 8s;"></i> ESP32 Microcontrollers</span>
+          <span class="flex items-center gap-2 hover:text-cyan-400 transition-colors"><i data-lucide="radio" class="w-4 h-4 text-cyan-400"></i> ESP-NOW Protocol</span>
+          <span class="flex items-center gap-2 hover:text-amber-400 transition-colors"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Inductive Power Transfer</span>
+          <span class="flex items-center gap-2 hover:text-emerald-400 transition-colors"><i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i> Real-time Telemetry</span>
+          <span class="flex items-center gap-2 hover:text-brand-400 transition-colors"><i data-lucide="code-2" class="w-4 h-4 text-brand-400"></i> C / C++ / Embedded C</span>
+          <span class="flex items-center gap-2 hover:text-cyan-400 transition-colors"><i data-lucide="layout" class="w-4 h-4 text-cyan-400"></i> React & Web Dashboards</span>
         </div>
       </div>
     </section>
@@ -251,25 +258,25 @@
           <h2 class="text-3xl md:text-4xl font-bold font-heading text-white">Featured Engineering Projects</h2>
           <p class="text-slate-400 mt-2 text-sm md:text-base">Integrating low-level electronics with interactive digital dashboards</p>
         </div>
-        <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 font-medium text-sm">
+        <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 font-medium text-sm group">
           <span>Explore All GitHub Repositories</span>
-          <i data-lucide="external-link" class="w-4 h-4"></i>
+          <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
         </a>
       </div>
 
       <!-- Bento Grid Layout -->
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 
-        <!-- Bento Item 1 -->
+        <!-- Bento Item 1 (Updated Correct Repository & Live Dashboard Links) -->
         <div class="md:col-span-8 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px]">
-          <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-all duration-500"></div>
+          <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/25 transition-all duration-500"></div>
           
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Interactive Dashboard
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5 shadow-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live Interactive Dashboard & Source
               </span>
-              <i data-lucide="activity" class="w-6 h-6 text-brand-400"></i>
+              <i data-lucide="activity" class="w-6 h-6 text-brand-400 group-hover:scale-125 transition-transform"></i>
             </div>
 
             <h3 class="text-2xl md:text-3xl font-bold font-heading text-white group-hover:text-brand-400 transition-colors">
@@ -281,37 +288,37 @@
             </p>
 
             <div class="flex flex-wrap gap-2 mt-6">
-              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono">React</span>
-              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono">JavaScript</span>
-              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono">Telemetry</span>
-              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono">Safety Interlocks</span>
+              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono border border-gray-800">React</span>
+              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono border border-gray-800">JavaScript</span>
+              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono border border-gray-800">Telemetry</span>
+              <span class="px-2.5 py-1 rounded-md bg-gray-900 text-slate-300 text-xs font-mono border border-gray-800">Safety Interlocks</span>
             </div>
           </div>
 
-          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-gray-800">
-            <a href="https://04-sai.github.io/Medical-Machine/" target="_blank" rel="noopener noreferrer" 
-               class="px-5 py-2.5 rounded-lg bg-brand-500 text-gray-950 font-bold text-xs md:text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-md">
+          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-gray-800 flex-wrap">
+            <a href="https://04-sai.github.io/Medical-Machine-Safety-Telemetry/" target="_blank" rel="noopener noreferrer" 
+               class="px-5 py-2.5 rounded-lg bg-brand-500 text-gray-950 font-bold text-xs md:text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-lg shadow-brand-500/20 hover:scale-105">
               <i data-lucide="play-circle" class="w-4 h-4"></i>
               <span>Launch Live Dashboard</span>
             </a>
-            <a href="https://github.com/04-Sai/Medical-Machine" target="_blank" rel="noopener noreferrer" 
-               class="px-5 py-2.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-slate-200 font-medium text-xs md:text-sm transition-all flex items-center gap-2 border border-gray-800">
+            <a href="https://github.com/04-Sai/Medical-Machine-Safety-Telemetry" target="_blank" rel="noopener noreferrer" 
+               class="px-5 py-2.5 rounded-lg bg-gray-900 hover:bg-gray-800 text-slate-200 font-medium text-xs md:text-sm transition-all flex items-center gap-2 border border-gray-800 hover:border-brand-500/40 hover:scale-105">
               <i data-lucide="github" class="w-4 h-4"></i>
-              <span>Source Code</span>
+              <span>Source Code & Repo</span>
             </a>
           </div>
         </div>
 
         <!-- Bento Item 2 -->
         <div class="md:col-span-4 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px]">
-          <div class="absolute -right-10 -top-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all duration-500"></div>
+          <div class="absolute -right-10 -top-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/25 transition-all duration-500"></div>
 
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
                 Hardware & IoT Project
               </span>
-              <i data-lucide="zap" class="w-6 h-6 text-cyan-400"></i>
+              <i data-lucide="zap" class="w-6 h-6 text-cyan-400 group-hover:scale-125 transition-transform"></i>
             </div>
 
             <h3 class="text-xl font-bold font-heading text-white group-hover:text-cyan-400 transition-colors">
@@ -323,18 +330,18 @@
             </p>
 
             <div class="flex flex-wrap gap-2 mt-4">
-              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono">ESP32</span>
-              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono">ESP-NOW</span>
-              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono">C++</span>
-              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono">Sensors</span>
+              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono border border-gray-800">ESP32</span>
+              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono border border-gray-800">ESP-NOW</span>
+              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono border border-gray-800">C++</span>
+              <span class="px-2 py-0.5 rounded bg-gray-900 text-slate-300 text-xs font-mono border border-gray-800">Sensors</span>
             </div>
           </div>
 
           <div class="mt-6 pt-6 border-t border-gray-800">
             <a href="https://github.com/04-Sai/Autonomous-Smart-Wireless-Drone-Charging-Pad" target="_blank" rel="noopener noreferrer" 
-               class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-xs md:text-sm font-medium">
+               class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-xs md:text-sm font-medium group">
               <span>View Hardware Specs & Repo</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
             </a>
           </div>
         </div>
@@ -346,10 +353,10 @@
               <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
                 IoT Internship Project
               </span>
-              <i data-lucide="cpu" class="w-6 h-6 text-emerald-400"></i>
+              <i data-lucide="cpu" class="w-6 h-6 text-emerald-400 group-hover:rotate-180 transition-transform duration-700"></i>
             </div>
 
-            <h3 class="text-xl font-bold font-heading text-white">
+            <h3 class="text-xl font-bold font-heading text-white group-hover:text-emerald-400 transition-colors">
               Edge AI Smart EV Charging Station Optimizer
             </h3>
 
@@ -371,10 +378,10 @@
               <span class="px-3 py-1 rounded-full text-xs font-mono bg-amber-500/10 border border-amber-500/30 text-amber-400">
                 Hackathon Achievement
               </span>
-              <i data-lucide="trophy" class="w-6 h-6 text-amber-400"></i>
+              <i data-lucide="trophy" class="w-6 h-6 text-amber-400 group-hover:scale-125 group-hover:rotate-12 transition-transform"></i>
             </div>
 
-            <h3 class="text-xl font-bold font-heading text-white">
+            <h3 class="text-xl font-bold font-heading text-white group-hover:text-amber-400 transition-colors">
               MakeForBelagavi Makeathon — Top 5 Finalist
             </h3>
 
@@ -398,8 +405,8 @@
       <p class="text-slate-400 text-sm mb-10">Hardware, software, and tools I work with</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4">
+        <div class="glass-card rounded-2xl p-6 group">
+          <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4 group-hover:bg-brand-500 group-hover:text-gray-950 transition-all">
             <i data-lucide="cpu" class="w-5 h-5"></i>
           </div>
           <h3 class="text-lg font-bold font-heading text-white mb-3">Embedded & Hardware</h3>
@@ -412,8 +419,8 @@
           </ul>
         </div>
 
-        <div class="glass-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4">
+        <div class="glass-card rounded-2xl p-6 group">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4 group-hover:bg-cyan-500 group-hover:text-gray-950 transition-all">
             <i data-lucide="code" class="w-5 h-5"></i>
           </div>
           <h3 class="text-lg font-bold font-heading text-white mb-3">Programming Languages</h3>
@@ -425,8 +432,8 @@
           </ul>
         </div>
 
-        <div class="glass-card rounded-2xl p-6">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+        <div class="glass-card rounded-2xl p-6 group">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4 group-hover:bg-emerald-500 group-hover:text-gray-950 transition-all">
             <i data-lucide="wrench" class="w-5 h-5"></i>
           </div>
           <h3 class="text-lg font-bold font-heading text-white mb-3">Tools & Certifications</h3>
@@ -446,24 +453,24 @@
       <p class="text-slate-400 text-sm mb-12">Academic journey and practical workshops</p>
 
       <div class="relative border-l border-gray-800 ml-4 md:ml-6 space-y-10">
-        <div class="relative pl-8">
-          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-500 border-4 border-gray-950"></div>
+        <div class="relative pl-8 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-500 border-4 border-gray-950 group-hover:scale-125 transition-transform"></div>
           <span class="text-xs font-mono text-brand-400">Present</span>
           <h3 class="text-lg font-bold text-white mt-1">B.E. in Electronics & Communication Engineering</h3>
           <p class="text-sm text-slate-400">Jain College of Engineering and Research, Belagavi (VTU)</p>
           <p class="text-sm text-slate-300 mt-2">Focused on microcontrollers, embedded systems, communication systems, signal processing, and IoT hardware.</p>
         </div>
 
-        <div class="relative pl-8">
-          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-cyan-500 border-4 border-gray-950"></div>
+        <div class="relative pl-8 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-cyan-500 border-4 border-gray-950 group-hover:scale-125 transition-transform"></div>
           <span class="text-xs font-mono text-cyan-400">July 2026</span>
           <h3 class="text-lg font-bold text-white mt-1">IoT Internship: Edge AI EV Charging Station</h3>
           <p class="text-sm text-slate-400">IoT & Edge Intelligence Domain</p>
           <p class="text-sm text-slate-300 mt-2">Hands-on exposure to embedded sensors, data streaming, and power optimization strategies.</p>
         </div>
 
-        <div class="relative pl-8">
-          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-gray-950"></div>
+        <div class="relative pl-8 group">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-gray-950 group-hover:scale-125 transition-transform"></div>
           <span class="text-xs font-mono text-emerald-400">August 2026</span>
           <h3 class="text-lg font-bold text-white mt-1">VLSI Technical Workshop</h3>
           <p class="text-sm text-slate-400">Semiconductor & SoC Interconnects</p>
@@ -474,7 +481,8 @@
 
     <!-- Contact Section -->
     <section id="contact" class="max-w-7xl mx-auto px-6 py-16">
-      <div class="glass-card rounded-3xl p-8 md:p-12 border border-brand-500/20 text-center relative overflow-hidden">
+      <div class="glass-card rounded-3xl p-8 md:p-12 border border-brand-500/20 text-center relative overflow-hidden group">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div class="max-w-2xl mx-auto relative z-10">
           <h2 class="text-3xl md:text-4xl font-bold font-heading text-white">Let's Connect</h2>
           <p class="text-slate-300 mt-4 text-sm md:text-base">
@@ -483,17 +491,17 @@
 
           <div class="flex flex-wrap justify-center items-center gap-4 mt-8">
             <a href="mailto:sahilkurbet475@gmail.com" 
-               class="px-6 py-3.5 rounded-xl bg-brand-500 text-gray-950 font-bold text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-lg shadow-brand-500/20">
+               class="px-6 py-3.5 rounded-xl bg-brand-500 text-gray-950 font-bold text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-lg shadow-brand-500/20 hover:scale-105">
               <i data-lucide="mail" class="w-4 h-4"></i>
               <span>Email Sahil</span>
             </a>
             <a href="https://linkedin.com/in/sahil-kurbet-ssk" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-gray-800">
+               class="px-6 py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-gray-800 hover:scale-105">
               <i data-lucide="linkedin" class="w-4 h-4"></i>
               <span>LinkedIn Profile</span>
             </a>
             <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-gray-800">
+               class="px-6 py-3.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-gray-800 hover:scale-105">
               <i data-lucide="file-text" class="w-4 h-4"></i>
               <span>View Resume</span>
             </a>
@@ -531,7 +539,7 @@
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </a>
 
-  <!-- Wave Canvas Background Script -->
+  <!-- Wave & Particle Canvas Background Script -->
   <script>
     // Initialize Lucide Icons
     lucide.createIcons();
@@ -554,7 +562,7 @@
       });
     }
 
-    // Interactive Dynamic Wave Canvas Animation
+    // Dynamic Wave + Floating Particle Canvas Animation
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
 
@@ -565,13 +573,23 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
+    // Generate floating particles
+    const particles = Array.from({ length: 45 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.5 + 0.5,
+      speedX: (Math.random() - 0.5) * 0.4,
+      speedY: (Math.random() - 0.5) * 0.4,
+      alpha: Math.random() * 0.5 + 0.2
+    }));
+
     let step = 0;
-    function animateWaves() {
+    function animateBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       step += 0.008;
 
-      const colors = ['rgba(16, 185, 129, 0.12)', 'rgba(34, 211, 238, 0.10)', 'rgba(56, 189, 248, 0.08)'];
-      
+      // Draw flowing waves
+      const colors = ['rgba(16, 185, 129, 0.10)', 'rgba(34, 211, 238, 0.08)', 'rgba(56, 189, 248, 0.06)'];
       for (let i = 0; i < 3; i++) {
         ctx.beginPath();
         ctx.fillStyle = colors[i];
@@ -589,9 +607,26 @@
         ctx.closePath();
         ctx.fill();
       }
-      requestAnimationFrame(animateWaves);
+
+      // Draw & update floating cyber particles
+      particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(52, 211, 153, ${p.alpha})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animateBackground);
     }
-    animateWaves();
+    animateBackground();
   </script>
 </body>
 </html>
