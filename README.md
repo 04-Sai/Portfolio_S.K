@@ -11,7 +11,7 @@ I am an **Electronics and Communication Engineering** student at Jain College of
 ---
 
 ### 🌐 Explore My Live Portfolio
-Check out my fully interactive, modern portfolio website: **[https://04-sai.github.io/Portfolio_S.K/](04-sai.github.io/Portfolio_S.K/)**
+Check out my fully interactive, modern portfolio website: **[https://04-sai.github.io/Portfolio_S.K/](https://04-sai.github.io/Portfolio_S.K/)**
 
 ---
 
