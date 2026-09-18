@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahil Kurbet | ECE Portfolio</title>
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Three.js for Particle Hero Canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              900: '#134e4a',
+            },
+            cyber: {
+              bg: '#090d16',
+              card: 'rgba(15, 23, 42, 0.75)',
+              border: 'rgba(45, 212, 191, 0.2)',
+              accent: '#38bdf8'
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'marquee': 'marquee 25s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #060911;
+      color: #f1f5f9;
+      overflow-x: hidden;
+      cursor: none; /* Hide standard system cursor for custom interactive pointer */
+    }
+
+    /* Custom Cursor Styles */
+    #cursor-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #2dd4bf;
+      position: fixed;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease-out;
+      box-shadow: 0 0 10px #2dd4bf, 0 0 20px #2dd4bf;
+    }
+
+    #cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba(45, 212, 191, 0.6);
+      position: fixed;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    body.cursor-hover #cursor-ring {
+      width: 56px;
+      height: 56px;
+      border-color: #38bdf8;
+      background-color: rgba(56, 189, 248, 0.1);
+    }
+
+    body.cursor-hover #cursor-dot {
+      transform: scale(1.8);
+      background-color: #38bdf8;
+    }
+
+    h1, h2, h3, .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(45, 212, 191, 0.4);
+      box-shadow: 0 12px 40px 0 rgba(20, 184, 166, 0.15);
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #2dd4bf 0%, #38bdf8 50%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    .tilt-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen text-slate-200 antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- Custom Cursor Elements -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Background Particle Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Ambient Grid -->
+  <div class="fixed inset-0 grid-pattern pointer-events-none z-0"></div>
+
+  <!-- Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/70 border-b border-slate-800/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group hover-target">
+        <img src="img.jpg" alt="Sahil Kurbet" class="w-10 h-10 rounded-xl object-cover border border-brand-500/40 shadow-md group-hover:scale-105 transition-transform">
+        <div>
+          <span class="font-heading font-bold text-lg tracking-wider text-slate-100 block group-hover:text-brand-400 transition-colors">SAHIL KURBET</span>
+          <span class="text-xs text-brand-400 font-mono tracking-widest uppercase">ECE Undergraduate</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-brand-400 transition-colors hover-target">About</a>
+        <a href="#projects" class="hover:text-brand-400 transition-colors hover-target">Projects</a>
+        <a href="#skills" class="hover:text-brand-400 transition-colors hover-target">Skills</a>
+        <a href="#achievements" class="hover:text-brand-400 transition-colors hover-target">Experience</a>
+        <a href="#contact" class="hover:text-brand-400 transition-colors hover-target">Contact</a>
+      </nav>
+
+      <!-- Resume Button -->
+      <div class="flex items-center gap-4">
+        <a href="https://drive.google.com/file/d/1X5Xw8d8q1q0w5w_v4_3X2_X1_X0_X/view" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500 hover:text-slate-950 font-medium text-sm transition-all duration-200 hover-target">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>Resume</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-28 pb-16">
+
+    <!-- Hero Section -->
+    <section id="about" class="max-w-7xl mx-auto px-6 pt-8 pb-20 min-h-[85vh] flex flex-col justify-center">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 border border-brand-500/30 text-brand-400 text-xs font-mono mb-6 w-fit backdrop-blur-sm shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
+            <span>Jain College of Engineering & Research | ECE Student</span>
+          </div>
+
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-heading tracking-tight leading-none text-slate-100 max-w-5xl mb-6">
+            Building the Future of <br>
+            <span class="gradient-text">Embedded Systems & IoT Hardware</span>
+          </h1>
+
+          <p class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed mb-10">
+            Electronics & Communication Engineering Student focused on Embedded Systems, IoT, and Microcontrollers. Dedicated to combining real-time telemetry, hardware monitoring, and interactive web dashboards.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-sky-500 text-slate-950 font-semibold text-sm hover:shadow-lg hover:shadow-brand-500/25 hover:scale-105 transition-all flex items-center gap-2 hover-target">
+              <span>View Live Projects</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" 
+               class="px-6 py-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center gap-2 hover-target">
+              <i data-lucide="github" class="w-4 h-4"></i>
+              <span>GitHub Profile</span>
+            </a>
+            <a href="https://linkedin.com/in/sahil-kurbet-ssk" target="_blank" rel="noopener noreferrer" 
+               class="px-6 py-3.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-sky-500/50 text-sky-400 font-semibold text-sm hover:bg-slate-800 transition-all flex items-center gap-2 hover-target">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Profile Image Card with Interactive Cursor Parallax -->
+        <div class="lg:col-span-4 flex justify-center">
+          <div id="profile-tilt-card" class="relative group tilt-card hover-target">
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-sky-500 rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
+            <div class="relative glass-card p-3 rounded-3xl overflow-hidden max-w-[280px] sm:max-w-[320px]">
+              <img src="img.jpg" alt="Sahil Sanjay Kurbet" class="w-full h-[320px] sm:h-[360px] object-cover rounded-2xl filter brightness-105 contrast-105 pointer-events-none">
+              <div class="mt-4 px-2 pb-2 text-center pointer-events-none">
+                <p class="font-heading font-bold text-white text-lg">Sahil Kurbet</p>
+                <p class="text-xs text-brand-400 font-mono mt-0.5">Electronics & Communication Student</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-slate-800/80 max-w-4xl">
+        <div class="glass-card p-4 rounded-xl border border-slate-800 hover-target">
+          <p class="text-2xl font-bold font-heading text-white">Top 5 Finish</p>
+          <p class="text-xs text-slate-400 font-mono mt-1">MakeForBelagavi (83 Teams)</p>
+        </div>
+        <div class="glass-card p-4 rounded-xl border border-slate-800 hover-target">
+          <p class="text-2xl font-bold font-heading text-white">ESP32 & IoT</p>
+          <p class="text-xs text-slate-400 font-mono mt-1">Wireless Drone Charging</p>
+        </div>
+        <div class="glass-card p-4 rounded-xl border border-slate-800 hover-target">
+          <p class="text-2xl font-bold font-heading text-white">Live Telemetry</p>
+          <p class="text-xs text-slate-400 font-mono mt-1">Medical Safety Dashboard</p>
+        </div>
+        <div class="glass-card p-4 rounded-xl border border-slate-800 hover-target">
+          <p class="text-2xl font-bold font-heading text-white">Internship</p>
+          <p class="text-xs text-slate-400 font-mono mt-1">Edge AI EV Charging</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Tech Scroll Banner -->
+    <section class="py-6 border-y border-slate-800/60 bg-slate-950/40 overflow-hidden mb-20">
+      <div class="flex whitespace-nowrap animate-marquee">
+        <div class="flex items-center gap-12 text-sm font-mono text-slate-400 px-6">
+          <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i> ESP32 Microcontrollers</span>
+          <span class="flex items-center gap-2"><i data-lucide="radio" class="w-4 h-4 text-sky-400"></i> ESP-NOW Protocol</span>
+          <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Inductive Power Transfer</span>
+          <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i> Real-time Telemetry</span>
+          <span class="flex items-center gap-2"><i data-lucide="code-2" class="w-4 h-4 text-brand-400"></i> C / C++ / Embedded C</span>
+          <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-purple-400"></i> React & Web Dashboards</span>
+        </div>
+        <div class="flex items-center gap-12 text-sm font-mono text-slate-400 px-6" aria-hidden="true">
+          <span class="flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4 text-brand-400"></i> ESP32 Microcontrollers</span>
+          <span class="flex items-center gap-2"><i data-lucide="radio" class="w-4 h-4 text-sky-400"></i> ESP-NOW Protocol</span>
+          <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Inductive Power Transfer</span>
+          <span class="flex items-center gap-2"><i data-lucide="activity" class="w-4 h-4 text-emerald-400"></i> Real-time Telemetry</span>
+          <span class="flex items-center gap-2"><i data-lucide="code-2" class="w-4 h-4 text-brand-400"></i> C / C++ / Embedded C</span>
+          <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-purple-400"></i> React & Web Dashboards</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Featured Projects Section -->
+    <section id="projects" class="max-w-7xl mx-auto px-6 py-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold font-heading text-white">Featured Engineering Projects</h2>
+          <p class="text-slate-400 mt-2 text-sm md:text-base">Integrating low-level electronics with interactive digital dashboards</p>
+        </div>
+        <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" class="mt-4 md:mt-0 inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 font-medium text-sm hover-target">
+          <span>Explore All GitHub Repositories</span>
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+        <!-- Bento Item 1: Medical Machine Telemetry (Large Feature Card) -->
+        <div class="md:col-span-8 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px] hover-target">
+          <div class="absolute -right-16 -bottom-16 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl group-hover:bg-brand-500/20 transition-all duration-500"></div>
+          
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Interactive Dashboard
+              </span>
+              <i data-lucide="activity" class="w-6 h-6 text-brand-400"></i>
+            </div>
+
+            <h3 class="text-2xl md:text-3xl font-bold font-heading text-white group-hover:text-brand-400 transition-colors">
+              Medical Machine Safety & Telemetry Monitor
+            </h3>
+            
+            <p class="text-slate-300 mt-4 leading-relaxed text-sm md:text-base max-w-2xl">
+              Real-time telemetry and safety dashboard built for medical diagnostic hardware. Tracks environmental sensors, manages safety interlocks, renders dynamic trend charts, and maintains live event logs for medical equipment reliability.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">React</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">JavaScript</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Telemetry</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Safety Interlocks</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-slate-800">
+            <a href="https://04-sai.github.io/Medical-Machine/" target="_blank" rel="noopener noreferrer" 
+               class="px-5 py-2.5 rounded-lg bg-brand-500 text-slate-950 font-semibold text-xs md:text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-md hover-target">
+              <i data-lucide="play-circle" class="w-4 h-4"></i>
+              <span>Launch Live Dashboard</span>
+            </a>
+            <a href="https://github.com/04-Sai/Medical-Machine" target="_blank" rel="noopener noreferrer" 
+               class="px-5 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs md:text-sm transition-all flex items-center gap-2 hover-target">
+              <i data-lucide="github" class="w-4 h-4"></i>
+              <span>View Source Code</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento Item 2: Smart Wireless Drone Charging Pad -->
+        <div class="md:col-span-4 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between min-h-[380px] hover-target">
+          <div class="absolute -right-10 -top-10 w-48 h-48 bg-sky-500/10 rounded-full blur-2xl group-hover:bg-sky-500/20 transition-all duration-500"></div>
+
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-sky-500/10 border border-sky-500/30 text-sky-400">
+                Hardware & IoT Project
+              </span>
+              <i data-lucide="zap" class="w-6 h-6 text-sky-400"></i>
+            </div>
+
+            <h3 class="text-xl font-bold font-heading text-white group-hover:text-sky-400 transition-colors">
+              Autonomous Wireless Drone Charging Pad
+            </h3>
+
+            <p class="text-slate-300 mt-3 text-sm leading-relaxed">
+              IoT-based autonomous pad designed for wireless drone power delivery utilizing inductive coupling and ESP32 microcontrollers for transmitter/receiver power management and status updates over ESP-NOW.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono">ESP32</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono">ESP-NOW</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono">C++</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono">Sensors</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-slate-800">
+            <a href="https://github.com/04-Sai/Autonomous-Smart-Wireless-Drone-Charging-Pad" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 text-sky-400 hover:text-sky-300 text-xs md:text-sm font-medium hover-target">
+              <span>View Hardware Specs & Repo</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento Item 3: Edge AI EV Charging Internship -->
+        <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between hover-target">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/10 border border-purple-500/30 text-purple-400">
+                IoT Internship Project
+              </span>
+              <i data-lucide="cpu" class="w-6 h-6 text-purple-400"></i>
+            </div>
+
+            <h3 class="text-xl font-bold font-heading text-white">
+              Edge AI Smart EV Charging Station Optimizer
+            </h3>
+
+            <p class="text-slate-300 mt-3 text-sm leading-relaxed">
+              Selected for an intensive IoT internship program focused on designing intelligent load management, real-time energy telemetry, and Edge AI algorithms for optimization of Smart EV Charging Stations.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+            <span>Domain: Embedded Edge AI</span>
+            <span class="text-purple-400">Active Learning</span>
+          </div>
+        </div>
+
+        <!-- Bento Item 4: MakeForBelagavi Hackathon Victory -->
+        <div class="md:col-span-6 glass-card rounded-2xl p-8 relative overflow-hidden group flex flex-col justify-between hover-target">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-amber-500/10 border border-amber-500/30 text-amber-400">
+                Hackathon Achievement
+              </span>
+              <i data-lucide="trophy" class="w-6 h-6 text-amber-400"></i>
+            </div>
+
+            <h3 class="text-xl font-bold font-heading text-white">
+              MakeForBelagavi Makeathon — Top 5 Finalist
+            </h3>
+
+            <p class="text-slate-300 mt-3 text-sm leading-relaxed">
+              Secured a spot in the Top 5 teams out of 83 participating engineering teams across the region at Visvesvaraya Technological University with a custom software solution.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+            <span>Location: VTU Belagavi</span>
+            <span class="text-amber-400">Top 5 / 83 Teams</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="max-w-7xl mx-auto px-6 py-16">
+      <h2 class="text-3xl font-bold font-heading text-white mb-2">Technical Skill Set</h2>
+      <p class="text-slate-400 text-sm mb-10">Hardware, software, and tools I work with</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Hardware & Embedded -->
+        <div class="glass-card rounded-2xl p-6 hover-target">
+          <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading text-white mb-3">Embedded & Hardware</h3>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> ESP32 Microcontrollers</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> ESP-NOW Protocol</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Inductive Wireless Coupling</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Sensor Integration & Telemetry</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Basic Circuit Design</li>
+          </ul>
+        </div>
+
+        <!-- Programming Languages -->
+        <div class="glass-card rounded-2xl p-6 hover-target">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4">
+            <i data-lucide="code" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading text-white mb-3">Programming Languages</h3>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i> C Language</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i> C++ / Embedded C</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i> JavaScript / HTML / CSS</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sky-400"></i> Basic Python</li>
+          </ul>
+        </div>
+
+        <!-- Developer Tools & Certs -->
+        <div class="glass-card rounded-2xl p-6 hover-target">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
+            <i data-lucide="wrench" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-heading text-white mb-3">Tools & Certifications</h3>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Git & GitHub Version Control</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Cisco Hardware Basics Cert</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> Generative AI Literacy Cert</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-400"></i> VLSI Technical Workshop</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Education Timeline -->
+    <section id="achievements" class="max-w-7xl mx-auto px-6 py-16">
+      <h2 class="text-3xl font-bold font-heading text-white mb-2">Education & Activities</h2>
+      <p class="text-slate-400 text-sm mb-12">Academic journey and practical workshops</p>
+
+      <div class="relative border-l border-slate-800 ml-4 md:ml-6 space-y-10">
+
+        <!-- Item 1 -->
+        <div class="relative pl-8">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-500 border-4 border-slate-950"></div>
+          <span class="text-xs font-mono text-brand-400">Present</span>
+          <h3 class="text-lg font-bold text-white mt-1">B.E. in Electronics & Communication Engineering</h3>
+          <p class="text-sm text-slate-400">Jain College of Engineering and Research, Belagavi (VTU)</p>
+          <p class="text-sm text-slate-300 mt-2">Focused on microcontrollers, embedded systems, communication systems, signal processing, and IoT hardware.</p>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="relative pl-8">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sky-500 border-4 border-slate-950"></div>
+          <span class="text-xs font-mono text-sky-400">July 2026</span>
+          <h3 class="text-lg font-bold text-white mt-1">IoT Internship: Edge AI EV Charging Station</h3>
+          <p class="text-sm text-slate-400">IoT & Edge Intelligence Domain</p>
+          <p class="text-sm text-slate-300 mt-2">Hands-on exposure to embedded sensors, data streaming, and power optimization strategies.</p>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="relative pl-8">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-purple-500 border-4 border-slate-950"></div>
+          <span class="text-xs font-mono text-purple-400">August 2026</span>
+          <h3 class="text-lg font-bold text-white mt-1">VLSI Technical Workshop</h3>
+          <p class="text-sm text-slate-400">Semiconductor & SoC Interconnects</p>
+          <p class="text-sm text-slate-300 mt-2">Completed specialized workshop covering semiconductor chip design fundamentals and System-on-Chip architecture.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 py-16">
+      <div class="glass-card rounded-3xl p-8 md:p-12 border border-brand-500/20 text-center relative overflow-hidden">
+        <div class="max-w-2xl mx-auto relative z-10">
+          <h2 class="text-3xl md:text-4xl font-bold font-heading text-white">Let's Connect</h2>
+          <p class="text-slate-300 mt-4 text-sm md:text-base">
+            I am always eager to collaborate on embedded systems, IoT hardware projects, or technical opportunities. Feel free to reach out directly.
+          </p>
+
+          <div class="flex flex-wrap justify-center items-center gap-4 mt-8">
+            <a href="mailto:sahilkurbet475@gmail.com" 
+               class="px-6 py-3.5 rounded-xl bg-brand-500 text-slate-950 font-bold text-sm hover:bg-brand-400 transition-all flex items-center gap-2 shadow-lg shadow-brand-500/20 hover-target">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              <span>Email Sahil</span>
+            </a>
+            <a href="https://linkedin.com/in/sahil-kurbet-ssk" target="_blank" rel="noopener noreferrer" 
+               class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700 hover-target">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+              <span>LinkedIn Profile</span>
+            </a>
+            <a href="https://drive.google.com/file/d/1X5Xw8d8q1q0w5w_v4_3X2_X1_X0_X/view" target="_blank" rel="noopener noreferrer" 
+               class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2 border border-slate-700 hover-target">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              <span>View Resume</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Clean Footer -->
+  <footer class="relative z-10 border-t border-slate-800/80 bg-slate-950/80 py-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-slate-400 text-xs md:text-sm font-mono">
+        © Made by S.K
+      </p>
+
+      <div class="flex items-center gap-6 text-slate-400 text-xs md:text-sm">
+        <a href="mailto:sahilkurbet475@gmail.com" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 hover-target">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          <span>Gmail</span>
+        </a>
+        <a href="https://github.com/04-Sai" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 hover-target">
+          <i data-lucide="github" class="w-3.5 h-3.5"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="https://drive.google.com/file/d/1X5Xw8d8q1q0w5w_v4_3X2_X1_X0_X/view" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors flex items-center gap-1.5 hover-target">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          <span>Resume</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <a href="#" class="fixed bottom-24 right-6 z-40 p-3 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-brand-400 hover:border-brand-500/50 shadow-xl transition-all duration-200 backdrop-blur-md hover:scale-110 hover-target" title="Back to Top">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </a>
+
+  <!-- Script for Animations & Particle Background -->
+  <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+    // Interactive Magnet Cursor System
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    });
+
+    // Smooth Lerp animation for cursor outer ring
+    function renderCursor() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.left = `${ringX}px`;
+      ring.style.top = `${ringY}px`;
+      requestAnimationFrame(renderCursor);
+    }
+    renderCursor();
+
+    // Hover Target Expansion for Cursor
+    const hoverTargets = document.querySelectorAll('a, button, .hover-target');
+    hoverTargets.forEach((target) => {
+      target.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      target.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // Dynamic 3D Tilt Effect on Profile Image Card
+    const tiltCard = document.getElementById('profile-tilt-card');
+    if (tiltCard) {
+      window.addEventListener('mousemove', (e) => {
+        const { innerWidth, innerHeight } = window;
+        const xPercent = (e.clientX / innerWidth) - 0.5;
+        const yPercent = (e.clientY / innerHeight) - 0.5;
+
+        const rotateX = yPercent * -20; 
+        const rotateY = xPercent * 20;
+
+        tiltCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+    }
+
+    // Particle Canvas with Mouse Reaction
+    const canvas = document.getElementById('bg-canvas');
+    if (canvas) {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const particlesCount = 800;
+      const posArray = new Float32Array(particlesCount * 3);
+
+      for(let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 15;
+      }
+
+      const particlesGeometry = new THREE.BufferGeometry();
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.025,
+        color: 0x2dd4bf,
+        transparent: true,
+        opacity: 0.6
+      });
+
+      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particlesMesh);
+
+      camera.position.z = 3;
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      function animateParticles() {
+        requestAnimationFrame(animateParticles);
+        particlesMesh.rotation.y += 0.0008;
+        particlesMesh.rotation.x += 0.0004;
+
+        // Interactive cursor drift
+        const targetRotY = (mouseX / window.innerWidth - 0.5) * 0.5;
+        const targetRotX = (mouseY / window.innerHeight - 0.5) * 0.5;
+
+        particlesMesh.rotation.y += (targetRotY - particlesMesh.rotation.y) * 0.02;
+        particlesMesh.rotation.x += (targetRotX - particlesMesh.rotation.x) * 0.02;
+
+        renderer.render(scene, camera);
+      }
+
+      animateParticles();
+    }
+  </script>
+</body>
+</html>
